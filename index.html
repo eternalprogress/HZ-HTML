@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>菏泽裕隆塑料包装有限公司 - 专业塑料包装解决方案</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c5aa0;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: #2c5aa0;
+        }
+
+        /* 主页横幅 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        /* 公司简介部分 */
+        .about {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #ff6b6b;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-left: 4px solid #2c5aa0;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .about-card h3 {
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* 产品展示 */
+        .products {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .product-card:hover::before {
+            left: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .product-card h3 {
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* 生产设备展示 */
+        .equipment {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .equipment-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .equipment-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .equipment-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .equipment-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .equipment-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .equipment-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .equipment-item:hover .equipment-overlay {
+            transform: translateY(0);
+        }
+
+        .equipment-overlay h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 企业资质展示 */
+        .certificates {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .certificate-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .certificate-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .certificate-item img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 2px solid #e2e8f0;
+        }
+
+        .certificate-item h3 {
+            color: #2c5aa0;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .certificate-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .stats {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #2c5aa0, #4a90e2);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #ff6b6b;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* 优势特色 */
+        .features {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        /* 联系我们 */
+        .contact {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #1a202c;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .about-grid,
+            .product-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">裕隆包装</div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home">首页</a></li>
+                <li class="nav-item"><a href="#about">关于我们</a></li>
+                <li class="nav-item"><a href="#products">产品中心</a></li>
+                <li class="nav-item"><a href="#equipment">生产设备</a></li>
+                <li class="nav-item"><a href="#certificates">企业资质</a></li>
+                <li class="nav-item"><a href="#features">企业优势</a></li>
+                <li class="nav-item"><a href="#contact">联系我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主页横幅 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>菏泽裕隆塑料包装</h1>
+            <p>品质至上 · 客户第一 · 创新发展</p>
+            <p>专业提供高品质塑料包装解决方案</p>
+            <a href="#contact" class="cta-button">立即咨询</a>
+        </div>
+    </section>
+
+    <!-- 公司简介 -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">关于我们</h2>
+            <p class="section-subtitle animate-on-scroll">扎根菏泽，专注塑料包装领域的专业企业</p>
+            
+            <div class="about-grid">
+                <div class="about-card animate-on-scroll">
+                    <h3>🏢 企业实力</h3>
+                    <p>自成立以来专注塑料包装业务，拥有现代化生产车间和先进设备，日产量可达4吨，在行业内逐步站稳脚跟并不断拓展市场版图。</p>
+                </div>
+                <div class="about-card animate-on-scroll">
+                    <h3>🎯 经营理念</h3>
+                    <p>秉持"品质至上、客户第一、创新发展"的经营理念，致力于为客户提供优质的包装产品和专业的解决方案。</p>
+                </div>
+                <div class="about-card animate-on-scroll">
+                    <h3>🔬 质量保证</h3>
+                    <p>建立完善的质量管控体系，从原材料采购到产品出厂，层层把关，确保每一件产品都符合高标准要求。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品展示 -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">产品中心</h2>
+            <p class="section-subtitle animate-on-scroll">丰富多样的产品线，满足不同行业需求</p>
+            
+            <div class="product-grid">
+                <div class="product-card animate-on-scroll">
+                    <div class="product-icon">🍎</div>
+                    <h3>食品包装袋</h3>
+                    <p>具备良好的密封性和卫生标准，严格符合食品安全要求，保障食品新鲜度和安全性，为食品行业提供可靠的包装解决方案。</p>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-icon">⚗️</div>
+                    <h3>化工产品包装袋</h3>
+                    <p>具备出色的耐腐蚀性和强度，能安全储存和运输各类化工原料，拥有优良的阻隔性和稳定性，满足工业领域的严格要求。</p>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-icon">📦</div>
+                    <h3>通用塑料包装袋</h3>
+                    <p>适用于各行各业的通用包装需求，可根据客户要求定制不同尺寸、厚度和形状，灵活满足个性化和批量化需求。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- 生产设备展示 -->
+    <section id="equipment" class="equipment">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">生产设备</h2>
+            <p class="section-subtitle animate-on-scroll">现代化生产设备，保障高效稳定生产</p>
+            
+            <div class="equipment-gallery">
+                <!-- 请将以下图片路径替换为您的实际设备照片 -->
+                <div class="equipment-item animate-on-scroll">
+                    <img src="./images/设备1.png" alt="生产设备1" />
+                    <div class="equipment-overlay">
+                        <h3>自动化生产线</h3>
+                        <p>现代化生产设备，高效稳定</p>
+                    </div>
+                </div>
+                <div class="equipment-item animate-on-scroll">
+                    <img src="./images/设备2.png" alt="生产设备2" />
+                    <div class="equipment-overlay">
+                        <h3>专业制袋设备</h3>
+                        <p>精密制袋成型工艺</p>
+                    </div>
+                </div>
+                <div class="equipment-item animate-on-scroll">
+                    <img src="./images/设备3.png" alt="生产设备3" />
+                    <div class="equipment-overlay">
+                        <h3>包装生产线</h3>
+                        <p>高效包装生产设备</p>
+                    </div>
+                </div>
+                <div class="equipment-item animate-on-scroll">
+                    <img src="./images/设备4.png" alt="生产设备4" />
+                    <div class="equipment-overlay">
+                        <h3>印刷复合设备</h3>
+                        <p>高精度印刷复合工艺</p>
+                    </div>
+                </div>
+                <div class="equipment-item animate-on-scroll">
+                    <img src="./images/设备5.png" alt="生产设备5" />
+                    <div class="equipment-overlay">
+                        <h3>吹膜生产设备</h3>
+                        <p>专业薄膜生产工艺</p>
+                    </div>
+                </div>
+                <div class="equipment-item animate-on-scroll">
+                    <img src="./images/设备6.png" alt="生产设备6" />
+                    <div class="equipment-overlay">
+                        <h3>质量检测设备</h3>
+                        <p>全程质量监控检测</p>
+                    </div>
+                </div>
+                <div class="equipment-item animate-on-scroll">
+                    <img src="./images/设备7.png" alt="生产设备7" />
+                    <div class="equipment-overlay">
+                        <h3>自动化生产线</h3>
+                        <p>智能化生产管理</p>
+                    </div>
+                </div>
+                <div class="equipment-item animate-on-scroll">
+                    <img src="./images/设备8.png" alt="生产设备8" />
+                    <div class="equipment-overlay">
+                        <h3>包装成型设备</h3>
+                        <p>精密包装成型工艺</p>
+                    </div>
+                </div>
+                <div class="equipment-item animate-on-scroll">
+                    <img src="./images/设备9.png" alt="生产设备9" />
+                    <div class="equipment-overlay">
+                        <h3>大型生产设备</h3>
+                        <p>重型生产设备操作</p>
+                    </div>
+                </div>
+                <div class="equipment-item animate-on-scroll">
+                    <img src="./images/设备10.png" alt="生产设备10" />
+                    <div class="equipment-overlay">
+                        <h3>制袋生产线</h3>
+                        <p>高效制袋生产工艺</p>
+                    </div>
+                </div>
+                <div class="equipment-item animate-on-scroll">
+                    <img src="./images/设备11.png" alt="生产设备11" />
+                    <div class="equipment-overlay">
+                        <h3>包装设备操作台</h3>
+                        <p>专业操作控制系统</p>
+                    </div>
+                </div>
+                <div class="equipment-item animate-on-scroll">
+                    <img src="./images/设备12.png" alt="生产设备12" />
+                    <div class="equipment-overlay">
+                        <h3>生产线控制台</h3>
+                        <p>智能化生产控制</p>
+                    </div>
+                </div>
+                <div class="equipment-item animate-on-scroll">
+                    <img src="./images/设备13.png" alt="生产设备13" />
+                    <div class="equipment-overlay">
+                        <h3>自动化设备</h3>
+                        <p>现代化自动控制系统</p>
+                    </div>
+                </div>
+                <div class="equipment-item animate-on-scroll">
+                    <img src="./images/设备14.png" alt="生产设备14" />
+                    <div class="equipment-overlay">
+                        <h3>生产车间全景</h3>
+                        <p>现代化生产车间环境</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- 企业资质展示 -->
+    <section id="certificates" class="certificates">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">企业资质</h2>
+            <p class="section-subtitle animate-on-scroll">完善的资质认证，确保合规经营</p>
+            
+            <div class="certificates-grid">
+                <!-- 请将以下图片路径替换为您的实际证书照片 -->
+                <div class="certificate-item animate-on-scroll">
+                    <img src="./images/公司资质.png" alt="公司资质复印件" />
+                    <h3>营业执照</h3>
+                    <p>合法注册企业资质证明</p>
+                </div>
+                <div class="certificate-item animate-on-scroll">
+                    <img src="./images/营业执照.png" alt="公司许可证复印件" />
+                    <h3>经营许可证</h3>
+                    <p>合法经营许可资质</p>
+                </div>
+                <div class="certificate-item animate-on-scroll">
+                    <img src="./images/质量管理.png" alt="质量管理体系认证" />
+                    <h3>质量管理体系认证</h3>
+                    <p>ISO 9001:2015 标准认证</p>
+                </div>
+                <div class="certificate-item animate-on-scroll">
+                    <img src="./images/质量管理2.png" alt="质量管理体系认证2" />
+                    <h3>质量管理体系认证</h3>
+                    <p>质量管理体系证书详情</p>
+                </div>
+                <div class="certificate-item animate-on-scroll">
+                    <img src="./images/环境管理.png" alt="环境管理体系认证" />
+                    <h3>环境管理体系认证</h3>
+                    <p>ISO 14001:2015 环保认证</p>
+                </div>
+                <div class="certificate-item animate-on-scroll">
+                    <img src="./images/环境管理2.png" alt="环境管理体系认证2" />
+                    <h3>环境管理体系认证</h3>
+                    <p>环境管理体系证书详情</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据统计 -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">生产实力</h2>
+            <div class="stats-grid">
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">吨/日产量</div>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-number">多条</div>
+                    <div class="stat-label">自动化生产线</div>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">质量合格率</div>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-number">全方位</div>
+                    <div class="stat-label">质量管控</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 企业优势 -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">企业优势</h2>
+            <p class="section-subtitle animate-on-scroll">多重优势保障，为客户提供优质服务</p>
+            
+            <div class="features-grid">
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">⚡</div>
+                    <h3>高效生产</h3>
+                    <p>现代化设备和多条自动化生产线，确保高效稳定的生产作业，按时交付客户订单。</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">🎨</div>
+                    <h3>定制服务</h3>
+                    <p>灵活的生产规格，可根据客户需求定制不同尺寸、厚度和形状的包装产品。</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">✅</div>
+                    <h3>质量保障</h3>
+                    <p>完善的质量管控体系，多道检测工序，确保每件产品都达到高标准要求。</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">🔬</div>
+                    <h3>技术创新</h3>
+                    <p>专业研发团队不断探索新技术新工艺，开发环保材料和创新包装设计。</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">🏆</div>
+                    <h3>资质齐全</h3>
+                    <p>拥有完整的企业资质和质量管理体系认证，确保合规经营和标准化管理。</p>
+                </div>
+                <div class="feature-item animate-on-scroll">
+                    <div class="feature-icon">🤝</div>
+                    <h3>专业服务</h3>
+                    <p>以客户为中心的服务团队，提供专业包装解决方案和优质售后服务。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title" style="color: white;">联系我们</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">期待与您携手合作，共创美好未来</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item animate-on-scroll">
+                        <h3>📍 公司地址</h3>
+                        <p>山东省菏泽市</p>
+                    </div>
+                    <div class="contact-item animate-on-scroll">
+                        <h3>🏢 企业性质</h3>
+                        <p>有限责任公司</p>
+                    </div>
+                    <div class="contact-item animate-on-scroll">
+                        <h3>📞 销售部 - 李宾</h3>
+                        <p>电话：15552086066</p>
+                    </div>
+                    <div class="contact-item animate-on-scroll">
+                        <h3>📞 销售部 - 曹海龙</h3>
+                        <p>电话：18526831174</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 3rem;">
+                    <a href="#home" class="cta-button">返回顶部</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 菏泽裕隆塑料包装有限公司 版权所有 | 专业塑料包装解决方案提供商</p>
+        </div>
+    </footer>
+
+    <script>
+        // 滚动动画
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // 初始执行
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // 数字动画
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = counter.innerText;
+                if (target === '4') {
+                    animateValue(counter, 0, 4, 2000);
+                }
+            });
+        }
+
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.innerText = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // 监听滚动到统计部分时启动数字动画
+        const statsSection = document.querySelector('.stats');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+        observer.observe(statsSection);
+    </script>
+</body>
+</html>
